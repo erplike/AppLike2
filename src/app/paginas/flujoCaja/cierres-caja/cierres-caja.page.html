@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Mi cierre de caja</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<br>
+<ion-content padding> 
+<!--  {{tableTitle}}  style="text-decoration-color:black" -->
+     <p *ngFor='let iterador2 of tableTitle;  let i=index' id="titulosTabla" style="font-size: 120%" >
+       <span *ngIf='i === 0' > <h3>Saldo Inicial:</h3> </span> 
+       <span *ngIf='i > 0'><h3> Saldo final en caja:</h3> </span> {{  iterador2 }} </p>
+<div id=table>
+   
+   <div class="table-responsive"  *ngIf="records">
+        <hr style="color: #0056b2 ;" noshade="noshade" size="10" width="100%"  /> 
+    <br>
+  <h3>Ingresos</h3>
+       <table class="table table-bordered" >
+           <tbody *ngFor='let iterador of ( table  | async)  ; let i=index'>
+               <tr *ngIf="i > 0 && records">
+                   <td >{{ iterador[0] }} </td>
+                   <td >{{ iterador[1] }} </td>
+               </tr>
+           </tbody>
+       </table>
+   </div>
+</div>
+<div id=table>
+    
+     <div class="table-responsive">
+         <table class="table table-bordered"  *ngIf="records">
+                <h3>Egresos</h3>
+             <tbody *ngFor='let iterador of ( table2  | async)  ; let i=index'>
+                 <tr *ngIf="i > 0 && records">
+                     <td >{{ iterador[0] }} </td>
+                     <td >{{ iterador[1] }} </td>
+                 </tr>
+             </tbody>
+         </table>
+     </div>
+  </div>
+</ion-content>

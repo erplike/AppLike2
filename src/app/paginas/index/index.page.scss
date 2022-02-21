@@ -1,0 +1,51 @@
+ion-content {
+    --background: none;
+    background-image: url(b.jpg);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;   
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+    text-decoration-color: white ; 
+    --ion-text-color: white  ; 
+   /*  -webkit-text-fill-color: yellowgreen; */
+    
+}
+.b {
+    --background: none;
+    background-image: url(like.JPG);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;   
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+    text-decoration-color: white ; 
+    --ion-text-color: white  ; 
+   /*  -webkit-text-fill-color: yellowgreen; */
+    
+}
+.a{
+    font-family: 'Pattaya', sans-serif;
+    font-size: 150%;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+}
+.cc{
+    max-width:90%;
+     background-color:blue;
+     opacity: 0.4;
+     text-align: center;
+     align-content: center;
+     align-items: center;
+     align-self: center;
+     float: center;
+     margin: 0 auto;
+    /*  --ion-text-color: blue; 
+     text-decoration-color: blue ; */
+}

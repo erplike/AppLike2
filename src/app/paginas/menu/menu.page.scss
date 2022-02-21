@@ -1,0 +1,38 @@
+.active {
+    --ion-text-color: var(--ion-color-primary);
+
+    ion-icon {
+        --ion-text-color-rgb: var(--ion-color-primary);
+    }
+}
+
+.parent-active {
+    font-weight: 500;
+}
+
+.sub-item {
+    padding-left: 20px;
+    font-size: small;
+}
+
+  .list-md{
+    background: var(--ion-item-background,var(--ion-background-color,#cd1818));
+}
+ion-content {
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    align-self: center;  
+  }
+  ion-header {
+    
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    align-self: center;  
+  }
+
+ion-content{
+
+    --ion-background-color:#cd1818;
+}

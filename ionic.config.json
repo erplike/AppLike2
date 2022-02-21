@@ -1,0 +1,7 @@
+{
+  "name": "LIKE3.0",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

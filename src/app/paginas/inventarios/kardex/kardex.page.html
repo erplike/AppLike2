@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Kardex</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content padding>
+    <form name="kardex">
+        <!-- <div class="form-group" style="margin:15px; font-family:'Nanum Myeongjo'; font-size: 120%"> -->
+            <div class="x_content">
+                <div   class="row" >
+                  <div class='col-md-3'>
+                    <div class="form-group">
+                      <label for="idsucursal">Sucursal:</label>
+                      <select name="idsucursal" id='idsucursal' class="chosen-select form-control input-sm" #idsucursal>
+                        <option value='' >TODAS </option>
+                        <option *ngFor="let sucursal of sucursales"  value='{{ sucursal[0] }}' >{{ sucursal[1] }} </option>
+                      </select>              
+                    </div>            
+                  </div>          
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="periodo">Periodo:</label>
+                        <input type='month' class="form-control"  id='periodo'  #periodo name='periodo' value='{{now}}'>               
+                    </div> 
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                          <label for="periodo">Filtro:</label>
+                            <input type=text class="form-control"  id='periodo'  #filtro name='periodo'   >               
+                      </div> 
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group"><br>
+                            <ion-button (click)="tableResults(idsucursal.value, periodo.value, filtro.value)">Buscar</ion-button>
+                      </div>
+                    </div> 
+                </div>
+            </div>  
+     </form>
+     <div id=table>
+        <ion-spinner name="circles" *ngIf="!records" id="colorLoading"></ion-spinner>
+        <div class="table-responsive" *ngIf="records">
+            
+            <hr style="color: #0056b2 ;" noshade="noshade" size="10" width="100%"  /> 
+            <br>
+            <table class="table table-bordered"  >
+                        <th *ngFor='let iterador2 of tableTitle' id="Headertable"> {{  iterador2 }} </th>
+
+                <tbody *ngFor='let iterador of ( table  | async)  ; let i=index'>
+                    <tr *ngIf="i > 1 && records && i< numberRecord-1" >
+                        <td *ngFor='let iterador2 of ( tableTitle ); let j=index'> 
+                          <div *ngIf="j==4 && i< numberRecord-1" id="numericSet">
+                            {{ iterador[j] }}
+                          </div>
+                          <div *ngIf="j!=4 && i< numberRecord-1">
+                              {{ iterador[j] }}
+                          </div>
+                        </td>
+                    </tr>
+                    <tr *ngIf="i==numberRecord-1 && records" id="Headertable" >
+                        <td *ngFor='let iterador2 of ( tableTitle ); let j=index'> 
+                          <div *ngIf="j==4 && i<numberRecord" id="numericSet">
+                            {{ iterador[j] }}
+                          </div>
+                          <div *ngIf="j!=4 && i<numberRecord">
+                              {{ iterador[j] }}
+                          </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+     </div>
+
+</ion-content>

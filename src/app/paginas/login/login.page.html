@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>IdNetworking</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding >
+  <div class="texto"><ion-toolbar>
+  <div id="opacity">
+    <img src="/assets/icon/favicon.png" alt=""  width="40%" class="images"/>
+    <br><br>
+    <form name="login">
+        <!-- font-family:'Nanum Myeongjo' -->
+        <div class="form-group" style="margin:15px; font-size: 120%">
+           Pin empresa  <input type="text" name="company"  id="company" #company class="form-control" autofocus style="text-transform:uppercase;">
+           Usuario <input type="text" name="user" #user class="form-control" >
+           Contraseña  <input type="password" #password name="password" class="form-control" >
+           <br>
+           <!-- routerLink="/home/" -->
+          </div>
+          </form>
+  <ion-button type="submit" (click)="submmit(company.value, user.value, password.value)">ACCEDER A LIKE</ion-button>
+  </div></ion-toolbar>
+</div>
+</ion-content>

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Traslados sin registro de entrada </ion-title>
+  </ion-toolbar>
+</ion-header>
+<br>
+<br>
+<ion-content padding>
+  <div id=table>
+    <ion-spinner name="circles" *ngIf="!records" id="colorLoading"></ion-spinner>
+    <div class="table-responsive" *ngIf="records">
+        <!-- <hr style="color: #0056b2 ;" noshade="noshade" size="10" width="100%"  /> 
+        <br> -->
+        <h3>Traslados sin descargar en destino
+        </h3>
+        <table class="table table-bordered"  >
+            <thead>
+                    <th *ngFor='let iterador2 of tableTitle' id="Headertable"> {{  iterador2 }} </th>
+            </thead>
+            <tbody *ngFor='let iterador of ( table  | async)  ; let i=index'>
+                <tr *ngIf="i > 1 && records">
+                    <td *ngFor='let iterador2 of ( tableTitle ); let j=index'> {{ iterador[j] }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+ </div>
+</ion-content>

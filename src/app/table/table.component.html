@@ -1,0 +1,15 @@
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead style="background-color: red">
+            <tr>
+                <th *ngFor='let iterador2 of tableTitle'> {{  iterador2 }} </th>
+            </tr>
+        </thead>
+        <tbody *ngFor='let iterador of table; let i=index'>
+            <tr *ngIf="i > 0">
+                <td *ngFor='let iterador2 of tableTitle; let j=index'> {{ iterador[j] }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- <p *ngIf='table!=null' >{{ contact }} </p> -->

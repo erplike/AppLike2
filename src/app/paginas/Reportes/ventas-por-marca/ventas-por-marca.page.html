@@ -1,0 +1,77 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Ventas por marca</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+  <form name="gerenteGeneral">
+      <!-- <div class="form-group" style="margin:15px; font-family:'Nanum Myeongjo'; font-size: 120%"> -->
+          <div class="x_content">
+              <div   class="row" >
+                <div class='col-md-3'>
+                  <div class="form-group">
+                    <label for="idsucursal">Sucursal:</label>
+                    <select name="idsucursal" id='idsucursal' class="chosen-select form-control input-sm" #idsucursal>
+                      <option value=''>Todas</option>
+                      <option *ngFor="let sucursal of sucursales"  value='{{ sucursal[0] }}' >{{ sucursal[1] }} </option>
+                    </select>              
+                  </div>            
+                </div>    
+                <div class='col-md-3'>
+                    <div class="form-group">
+                      <label for="idcategoria">Categorias:</label>
+                      <select name="idcategoria" id='idcategoria' class="chosen-select form-control input-sm" #idcategoria>
+                        <option value=''>Todas</option>
+                        <option *ngFor="let categoria of categorias"  value='{{ categoria[0] }}' >{{ categoria[1] }} </option>
+                      </select>              
+                    </div>            
+                  </div>        
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="periodo">Fecha desde:</label>
+                    <input type="date" class="form-control input-sm" name="fechaDesde" #fechaDesde value="2019-09-01" id="fechaDesde">
+                  </div> 
+                  </div>
+                  <div class="col-md-3">
+                      <div class="form-group">
+                        <label for="periodo">Fecha hasta:</label>
+                        <input type="date" class="form-control input-sm" name="fechaHasta" #fechaHasta value="2019-09-30" id="fechahasta">
+                      </div> 
+                      </div>
+                  <div class="col-md-3">
+                      <div class="form-group"><br>
+                          <ion-button type="submit" (click)="tableResults(idsucursal.value, fechaDesde.value, fechaHasta.value, idcategoria.value)">Buscar</ion-button>
+                    </div>
+                    </div> 
+              </div>
+          </div>  
+   </form>
+  <div id=table>
+      <ion-spinner name="circles" *ngIf="!records" id="colorLoading"></ion-spinner>
+      <div class="table-responsive" *ngIf="records">
+          <hr style="color: #0056b2 ;" noshade="noshade" size="10" width="100%"  /> 
+          <br>
+          <!-- <h3>Ventas por marca </h3> -->
+          <table class="table table-bordered"  >
+              <thead id="headerTable">
+                  <tr>
+                      <th *ngFor='let iterador2 of tableTitle'> {{  iterador2 }} </th>
+                  </tr>
+              </thead>
+              <tbody *ngFor='let iterador of ( table  | async)  ; let i=index'>
+                  <tr *ngIf="i > 1 && records &&  i < numberRecord-1 ">
+                    <td *ngFor='let iterador2 of ( tableTitle ); let j=index'> {{ iterador[j] }}</td>
+                  </tr>
+                    <tr *ngIf="i === numberRecord-1" id="Headertable" >
+                      <td *ngFor='let iterador2 of ( tableTitle ); let j=index'> {{ iterador[j] }}</td>
+                  </tr> 
+              </tbody>
+          </table>
+      </div>
+   </div>
+   </ion-content>
+   

@@ -1,0 +1,180 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Reporte gerente general</ion-title>
+    </ion-toolbar>
+  </ion-header>
+   
+<ion-content padding>
+    <form name="gerenteGeneral">
+        <!-- <div class="form-group" style="margin:15px; font-family:'Nanum Myeongjo'; font-size: 120%"> -->
+            <div class="x_content">
+                <div   class="row" >
+                  <div class='col-md-3'>
+                    <div class="form-group">
+                      <label for="idsucursal">Sucursal:</label>
+                      <select name="idsucursal" id='idsucursal' class="chosen-select form-control input-sm" #idsucursal>
+                        <option *ngFor="let sucursal of sucursales"  value='{{ sucursal[0] }}' >{{ sucursal[1] }} </option>
+                      </select>              
+                    </div>            
+                  </div>          
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="periodo">Fecha desde:</label>
+                      <input type="date" class="form-control input-sm" name="fechaDesde" #fechaDesde value='{{now}}' id="fechaDesde">
+                    </div> 
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                          <label for="periodo">Fecha hasta:</label>
+                          <input type="date" class="form-control input-sm" name="fechaHasta" #fechaHasta value='{{dayUltimate}}' id="fechahasta">
+                        </div> 
+                        </div>
+                    <div class="col-md-3">
+                        <div class="form-group"><br>
+                            <ion-button type="submit" (click)="tableResults(idsucursal.value, fechaDesde.value, fechaHasta.value)">Buscar</ion-button>
+                      </div>
+                      </div> 
+                </div>
+            </div>  
+     </form>
+     <div id=table>
+        <ion-spinner name="circles" *ngIf="load" id="colorLoading"></ion-spinner>
+        <div class="table-responsive" *ngIf="records">
+            <hr style="color: #0056b2 ;" noshade="noshade" size="10" width="100%"  /> 
+            <br>
+            <h3>Resumen de ventas </h3>
+            <table class="table table-bordered"  >
+                        <th *ngFor='let iterador2 of tableTitle' id="Headertable"> {{  iterador2 }} </th>
+                <tbody *ngFor='let iterador of ( table  | async)  ; let i=index'>
+                    
+                    <tr *ngIf="i > 1 && records" >
+                            <td *ngFor='let iterador2 of ( tableTitle ); let j=index'> 
+                              <div *ngIf="j==0" >
+                                {{ iterador[j] }}
+                              </div>
+                              <div *ngIf="j!=0" id="numericSet">
+                                  {{ iterador[j] }}
+                              </div>
+                            </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+     </div>
+
+     <div id=table>
+        <div class="table-responsive"  *ngIf="records2">
+            <h3>Formas de pago</h3>
+            <table class="table table-bordered" >
+
+                        <th *ngFor='let iterador2 of tableTitle2' id="Headertable"> {{  iterador2 }} </th>
+                
+                <tbody *ngFor='let iterador of ( table2  | async)  ; let i=index'>
+                    <tr *ngIf="i > 0 && records2 && i<numberRecord2-1" >
+                            <td *ngFor='let iterador2 of ( tableTitle2 ); let j=index'> 
+                              <div *ngIf="j==0 && i<numberRecord2-1" >
+                                {{ iterador[j] }}
+                              </div>
+                              <div *ngIf="j!=0 && i<numberRecord2-1" id="numericSet">
+                                  {{ iterador[j] }}
+                              </div>
+                            </td>
+                    </tr>
+                    <tr *ngIf="i==numberRecord2-1 && records" id="Headertable" >
+                            <td *ngFor='let iterador2 of ( tableTitle ); let j=index'> 
+                              <div *ngIf="j==4 && i<numberRecord2" id="numericSet">
+                                {{ iterador[j] }}
+                              </div>
+                              <div *ngIf="j!=4 && i<numberRecord2">
+                                  {{ iterador[j] }}
+                              </div>
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+     </div>
+
+
+     <div id=table>
+        <div class="table-responsive" *ngIf="records3">
+            <h3>Ventas por segmento (Móvil) </h3>
+            <table class="table table-bordered"  >
+                
+                        <th *ngFor='let iterador2 of tableTitle3' id="Headertable"> {{  iterador2 }} </th>
+
+                <tbody *ngFor='let iterador of ( table3  | async)  ; let i=index'>
+                    <tr *ngIf="i > 0 && records3  && i<numberRecord3-1 ">
+                        <td *ngFor='let iterador2 of ( tableTitle3 ); let j=index'> {{ iterador[j] }}</td>
+                    </tr>
+                    <tr *ngIf="i === numberRecord3-1" id="Headertable" >
+                      <td *ngFor='let iterador2 of ( tableTitle3 ); let j=index'> {{ iterador[j] }}</td>
+                  </tr> 
+                </tbody>
+            </table>
+        </div>
+     </div>
+
+     <div id=table>
+        <div class="table-responsive" *ngIf="records4">
+            <h3>Ventas por segmento (Fijo) </h3>
+            <table class="table table-bordered"  >
+                   <th *ngFor='let iterador2 of tableTitle4' id="Headertable"> {{  iterador2 }} </th>
+                <tbody *ngFor='let iterador of ( table4  | async)  ; let i=index'>
+                    <tr *ngIf="i > 0 && records4  && i<numberRecord4-1 ">
+                        <td *ngFor='let iterador2 of ( tableTitle4 ); let j=index'> {{ iterador[j] }}</td>
+                    </tr>
+                    <tr *ngIf="i === numberRecord4-1" id="Headertable" >
+                      <td *ngFor='let iterador2 of ( tableTitle4 ); let j=index'> {{ iterador[j] }}</td>
+                  </tr> 
+                </tbody>
+            </table>
+        </div>
+     </div>
+
+     <div id=table>
+        <div class="table-responsive"  *ngIf="records5">
+              <h3>  Ingresos (Ventas) </h3>
+            <table class="table table-bordered" >
+                
+                        <th *ngFor='let iterador2 of tableTitle5' id="Headertable"> {{  iterador2 }} </th>
+                        
+               <!--   style="background-color: #cd1818"  [style.checked]="false" -->
+                <tbody *ngFor='let iterador of ( table5  | async)  ; let i=index'>
+                    <tr *ngIf="i > 0 && records5 && i<numberRecord5-1 ">
+                        <td *ngFor='let iterador2 of ( tableTitle5 ); let j=index'>{{ iterador[j] }}  </td>
+                    </tr>
+                    <tr *ngIf="i === numberRecord5-1" id="Headertable" >
+                    <td *ngFor='let iterador2 of ( tableTitle5 ); let j=index'> {{ iterador[j] }}</td>
+                </tr> 
+                  </tbody>
+            </table>
+        </div>
+     </div>
+
+  
+     <div id=table>
+        <div class="table-responsive"  *ngIf="records6">
+                <h3>Gastos/Salidas </h3>
+            <table class="table table-bordered" >
+
+                        <th *ngFor='let iterador2 of tableTitle6' id="Headertable"> {{  iterador2 }} </th>
+                        
+               <!--   style="background-color: #cd1818"  [style.checked]="false" -->
+                <tbody *ngFor='let iterador of ( table6  | async)  ; let i=index'>
+                    <tr *ngIf="i > 0 && records6 && i<numberRecord6-1 " >
+                        <td *ngFor='let iterador2 of ( tableTitle6 ); let j=index'>{{ iterador[j] }}  </td>
+                    </tr>
+                    <tr *ngIf="i === numberRecord6-1" id="Headertable" >
+                      <td *ngFor='let iterador2 of ( tableTitle6 ); let j=index'> {{ iterador[j] }}</td>
+                  </tr> 
+                    </tbody>
+            </table>
+        </div>
+     </div>
+
+
+</ion-content>
